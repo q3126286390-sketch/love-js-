@@ -1,9 +1,9 @@
-<canvas id="canvas"></canvas>
-// ===== 鑾峰彇 canvas =====
+
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-// ===== 鑷€傚簲灞忓箷 =====
+
 function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -11,7 +11,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// ===== 榧犳爣浣嶇疆 =====
+
 let mouse = { x: null, y: null };
 
 window.addEventListener("mousemove", (e) => {
@@ -19,7 +19,7 @@ window.addEventListener("mousemove", (e) => {
     mouse.y = e.y;
 });
 
-// ===== 鉂わ笍 鐢诲績褰� =====
+
 function drawHeart(x, y, size) {
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -29,7 +29,7 @@ function drawHeart(x, y, size) {
     ctx.fill();
 }
 
-// ===== 绮掑瓙绫� =====
+
 class Particle {
     constructor(x = null, y = null) {
         this.x = x !== null ? x : Math.random() * canvas.width;
@@ -43,11 +43,11 @@ class Particle {
         this.x += this.vx;
         this.y += this.vy;
 
-        // 杈圭晫鍙嶅脊
+        
         if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
         if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
 
-        // 榧犳爣鍚稿紩鏁堟灉
+        
         if (mouse.x !== null && mouse.y !== null) {
             let dx = mouse.x - this.x;
             let dy = mouse.y - this.y;
@@ -65,7 +65,7 @@ class Particle {
     }
 }
 
-// ===== 鍒濆鍖栫矑瀛� =====
+
 let particles = [];
 const PARTICLE_COUNT = 120;
 
@@ -78,7 +78,7 @@ function initParticles() {
 
 initParticles();
 
-// ===== 杩炵嚎鏁堟灉 =====
+
 function connectParticles() {
     for (let a = 0; a < particles.length; a++) {
         for (let b = a; b < particles.length; b++) {
@@ -98,14 +98,14 @@ function connectParticles() {
     }
 }
 
-// ===== 鐐瑰嚮鐢熸垚鐖卞績鐖嗙偢 =====
+
 window.addEventListener("click", (e) => {
     for (let i = 0; i < 12; i++) {
         particles.push(new Particle(e.x, e.y));
     }
 });
 
-// ===== 鍔ㄧ敾寰幆 =====
+
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
